@@ -19,10 +19,10 @@ NAME is a web app that will allow users to keep track of multiple bucket lists, 
 
 (___TODO__: a description of your application's data and their relationships to each other_) 
 
-The application will store Users, Lists and Items
+The application will store Users, Lists, and Activities
 
 * users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
+* each list can have multiple activities (by embedding)
 
 (___TODO__: sample documents_)
 
@@ -51,7 +51,7 @@ An Example List with Embedded Items:
 ```
 
 
-## [Link to Commented First Draft Schema](db.js) 
+## [Link to Commented First Draft Schema](src/db.js) 
 
 (___TODO__: create a first draft of your Schemas in db.js and link to it_)
 
@@ -89,30 +89,24 @@ An Example List with Embedded Items:
 
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+3. as a user, I can create a new bucket list
+4. as a user, I can view all of the bucket lists I've created
+5. as a user, I can add activities to an existing bucket list
+6. as a user, I can cross off activities in an existing bucket list
 
 ## Research Topics
 
 (___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
 
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (6 points) User Authentication
+    * I'm going to be using passport.js for user authentication
+* (2 points) Use a CSS framework throughout your site
+    * I'm going to be using Bootstrap 
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+8 points total out of 8 required points
 
 
-## [Link to Initial Main Project File](app.js) 
+## [Link to Initial Main Project File](src/app.js) 
 
 (___TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
 
@@ -120,6 +114,6 @@ An Example List with Embedded Items:
 
 (___TODO__: list any tutorials/references/etc. that you've based your code off of_)
 
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
+1. [passport.js authentication docs](http://passportjs.org/docs)
+2. [tutorial on vue.js](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 

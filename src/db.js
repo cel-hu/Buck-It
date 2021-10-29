@@ -14,4 +14,4 @@ const BucketList = new mongoose.Schema({
 });
 
 mongoose.model('BucketList', BucketList);
-mongoose.connect('mongodb://localhost/final_project');
+mongoose.connect('mongodb://localhost/ait_final');
