@@ -4,13 +4,15 @@ The content below is an example project proposal / requirements document. Replac
 
 # Shoppy Shoperson 
 
+### BUCKET LIST w/ different categories like things to do before a certain age or milestone
+
 ## Overview
 
 (___TODO__: a brief one or two paragraph, high-level description of your project_)
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
+Everyone needs a bucket list to keep track of the activities they want to do before a certain deadline. It's hard to keep track of a bucket list on paper, especially when you have multiple, so that's where NAME comes in. 
 
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
+NAME is a web app that will allow users to keep track of multiple bucket lists, such as one to complete before graduating high school, one to complete before graduating college, one before death, etc. Users can register and login, and once logged in, they can create or view their bucket lists. For every list that they have, they can add things or cross things off. 
 
 
 ## Data Model
@@ -28,7 +30,7 @@ An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
+  username: "username",
   hash: // a password hash,
   lists: // an array of references to List documents
 }
@@ -39,10 +41,10 @@ An Example List with Embedded Items:
 ```javascript
 {
   user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
+  name: "Things to do before graduating high school",
+  activities: [
+    { name: "go to a football game", price: "4.50", tags: ["experience"], checked: false},
+    { name: "watch a sunrise with friends", price: "0.00", tags: ["experience"], checked: true},
   ],
   createdAt: // timestamp
 }
@@ -57,21 +59,29 @@ An Example List with Embedded Items:
 
 (___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
-/list/create - page for creating a new shopping list
+/ - home page where users can log in
 
-![list create](documentation/list-create.png)
+/signup - page where new users can create an account
 
-/list - page for showing all shopping lists
+/signin - page where existing users can sign in to their account
+
+/list - page for showing all of the user's bucket lists
 
 ![list](documentation/list.png)
 
-/list/slug - page for showing specific shopping list
+/list/create - page for creating a new bucket list
+
+![list create](documentation/list-create.png)
+
+/list/slug - page for showing specific bucket list
 
 ![list](documentation/list-slug.png)
 
 ## Site map
 
 (___TODO__: draw out a site map that shows how pages are related to each other_)
+
+![sitemap](sitemap.png)
 
 Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
 
