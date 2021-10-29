@@ -60,30 +60,28 @@ An Example List with Embedded Items:
 (___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
 / - home page where users can log in
+![home](home.png)
 
 /signup - page where new users can create an account
+![signup](signup.png)
 
 /signin - page where existing users can sign in to their account
+![signin](signin.png)
 
 /list - page for showing all of the user's bucket lists
-
-![list](documentation/list.png)
+![list](list.png)
 
 /list/create - page for creating a new bucket list
-
-![list create](documentation/list-create.png)
+![list create](list-create.png)
 
 /list/slug - page for showing specific bucket list
-
-![list](documentation/list-slug.png)
+![list slug](list-slug.png)
 
 ## Site map
 
 (___TODO__: draw out a site map that shows how pages are related to each other_)
 
 ![sitemap](sitemap.png)
-
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
 
 ## User Stories or Use Cases
 
