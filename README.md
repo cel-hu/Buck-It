@@ -89,5 +89,5 @@ An Example List with Embedded Items:
 ## Annotations / References Used
 
 1. [passport.js authentication docs](http://passportjs.org/docs)
-2. [tutorial on vue.js](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
+2. [bootstrap docs](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 
