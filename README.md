@@ -14,8 +14,6 @@ The application will store Users, Lists, and Activities
 * users can have multiple lists (via references)
 * each list can have multiple activities (by embedding)
 
-(___TODO__: sample documents_)
-
 An Example User:
 
 ```javascript
