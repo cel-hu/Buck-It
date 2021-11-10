@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 // my schema goes here!
+const User = new mongoose.Schema({
+	lists: [{type: mongoose.Schema.Types.ObjectId, ref: 'List'}]
+});
+
 const BucketList = new mongoose.Schema({
 	user: String,
 	name: String,

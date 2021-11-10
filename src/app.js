@@ -2,23 +2,23 @@ require('./db');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 //const BucketList = mongoose.model('BucketList');
 
 const path = require('path');
-const publicPath = path.resolve(__dirname, "public");
-app.use(express.static(publicPath));
-app.use(express.urlencoded({extended:false}));
 
 const session = require('express-session');
 const sessionOptions = { 
 	secret: 'secret', 
-	saveUninitialized: false, 
-	resave: false 
+	saveUninitialized: true, 
+	resave: true 
 };
 app.use(session(sessionOptions));
 
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
     res.send('Bucket List');
