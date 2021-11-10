@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uri = process.env.MONGODB_URI;
 
 // my schema goes here!
 const User = new mongoose.Schema({
@@ -13,8 +14,8 @@ const Activity = new mongoose.Schema({
 })
 const BucketList = new mongoose.Schema({
 	//user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-	name: {type: String, required: true},
-	activities: [Activity],
+	title: {type: String, required: true},
+	//activities: [Activity],
     //createdAt: {type: Date, required: true}
 });
 

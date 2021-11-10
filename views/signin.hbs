@@ -1,7 +1,15 @@
 <h2>Sign into existing account:</h2>
-<form method="POST" action="signup">
-    <div>Name: <input type="text" name="name" value=""></div>
-	<div>Username: <input type="text" name="username" value=""></div>
-	<div>Password: <input type="password" name="password" value=""></div>
-	<div><input type="submit" value="Sign In"></div>
+
+<form action="/signin" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Sign In"/>
+    </div>
 </form>

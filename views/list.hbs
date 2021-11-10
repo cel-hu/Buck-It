@@ -1,7 +1,16 @@
-<form action="/list">
-    <input type="submit" value="All Lists" />
-</form>
-
-<form action="/list/create">
-    <input type="submit" value="Create New List" />
-</form>
+<div class='table'>
+    <table align='center'>
+        <tr>
+            <th>Bucket Lists</th>
+        </tr>
+        {{#each bucketlists}}
+            <tr>
+                <td>{{title}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</div>
+<center>
+    <a href= "/list">All Lists</a>
+    <a href= "/list/create">Create New List</a>
+</center>

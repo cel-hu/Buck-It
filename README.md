@@ -78,7 +78,9 @@ An Example List with Embedded Items:
 
 * (6 points) User Authentication
     * I'm going to be using passport.js for user authentication
-    * 
+    * I will be using authenticate() with the local strategy in the POST method 
+        * The local strategy has a failureFlash option that when set to true will prompt the user to try again
+    * LocalStrategy has a usernameField and a passwordField for login
 * (2 points) Use a CSS framework throughout your site
     * I'm going to be using Bootstrap 
 

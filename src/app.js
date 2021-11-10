@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 const uri = process.env.MONGODB_URI;
 
 const path = require('path');
@@ -34,6 +35,11 @@ app.get('/signup', function(req, res) {
     res.redirect('/list/create');
 });
 
+app.post('/signup',  passport.authenticate('local', { 
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true 
+}));
 /* passport.js
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
@@ -79,28 +85,16 @@ app.get('/list/create', function(req, res) {
 
 app.post('/list/create', function(req, res) {
     new BucketList({
-        name: req.body.name,
-        activities: []
-    }).save(function() {
-        if (req.session.bucketList !== undefined) {
-            req.session.bucketList.push({
-                //user: req.body.user,
-                name: req.body.name,
-                activities: []
-                //createdAt: req.body.createdAt
-            });
+        title: req.body.title,
+        //activities: []
+    }).save(function(err) {
+        if (err) {
+            return;
         }
         else {
-            req.session.bucketList = [];
-            req.session.bucketList.push({
-                //user: req.body.user,
-                name: req.body.name,
-                activities: []
-                //createdAt: req.body.createdAt
-            });
+            res.redirect('/list');
         }
     });
-    res.redirect('/list');
 });
 
 app.get('/list/slug', function(req, res) {
