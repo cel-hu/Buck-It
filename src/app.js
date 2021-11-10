@@ -100,7 +100,7 @@ app.post('/list/create', function(req, res) {
             });
         }
     });
-    res.render('list');
+    res.redirect('/list');
 });
 
 app.get('/list/slug', function(req, res) {
