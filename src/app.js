@@ -6,6 +6,10 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const uri = process.env.MONGODB_URI;
 
+require('dotenv').config();
+
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true}).then((x) => console.log('Connected to the DB').catch(err => console.error('Error while connecting to DB', err)));
+
 const path = require('path');
 
 const session = require('express-session');
