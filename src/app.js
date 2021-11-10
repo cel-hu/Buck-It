@@ -5,10 +5,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const uri = process.env.MONGODB_URI;
+const MongoDBStore = require('connect-mongodb-session')(session);
+
 
 const path = require('path');
 const sessStore = new MongoDBStore({
-    uri: process.env.MONGODB_URI || 'mongodb://localhost/CheckedTasks',
+    uri: process.env.MONGODB_URI || 'mongodb://localhost/ait_final',
 });
 const session = require('express-session');
 const sessionOptions = { 
