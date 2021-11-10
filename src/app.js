@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const uri = process.env.MONGODB_URI;
 //const BucketList = mongoose.model('BucketList');
 
 const path = require('path');
