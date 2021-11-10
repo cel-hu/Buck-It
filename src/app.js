@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
     res.send('Bucket List');
-    res.send('Home Page');
+    //res.send('Home Page');
 });
 
 app.get('/signup', function(req, res) {
@@ -45,4 +45,4 @@ app.get('/list/slug', function(req, res) {
     res.send('Show Specific Bucket List');
 });
 
-app.listen(process.env.PORT || 5000);
+app.listen(3000);
