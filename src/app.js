@@ -18,7 +18,7 @@ const sessionOptions = {
 	secret: 'secret', 
 	saveUninitialized: true, 
 	resave: true,
-    //store: sessStore
+    store: sessStore
 };
 app.use(session(sessionOptions));
 
