@@ -78,6 +78,7 @@ An Example List with Embedded Items:
 
 * (6 points) User Authentication
     * I'm going to be using passport.js for user authentication
+    * 
 * (2 points) Use a CSS framework throughout your site
     * I'm going to be using Bootstrap 
 
@@ -88,6 +89,6 @@ An Example List with Embedded Items:
 
 ## Annotations / References Used
 
-1. [passport.js authentication docs](http://passportjs.org/docs)
+1. [passport.js authentication docs](http://www.passportjs.org/docs/username-password/)
 2. [bootstrap docs](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 
