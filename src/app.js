@@ -7,12 +7,15 @@ const passport = require('passport');
 const uri = process.env.MONGODB_URI;
 
 const path = require('path');
-
+const sessStore = new MongoDBStore({
+    uri: process.env.MONGODB_URI || 'mongodb://localhost/CheckedTasks',
+});
 const session = require('express-session');
 const sessionOptions = { 
 	secret: 'secret', 
 	saveUninitialized: true, 
-	resave: true 
+	resave: true,
+    store: sessStore
 };
 app.use(session(sessionOptions));
 
