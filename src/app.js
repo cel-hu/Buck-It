@@ -91,17 +91,15 @@ app.get('/list/create', function(req, res) {
 
 app.post('/list/create', function(req, res) {
     new BucketList({
-        user: 'user1',
+        //user: 'user1',
         title: req.body.title,
         //activities: []
     }).save(function(err) {
         if (err) {
             return;
         }
-        else {
-            res.redirect('/list');
-        }
-    });
+    })
+    res.redirect('/list');
 });
 
 app.get('/list/slug', function(req, res) {
