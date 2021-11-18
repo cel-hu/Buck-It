@@ -91,6 +91,7 @@ app.get('/list/create', function(req, res) {
 
 app.post('/list/create', function(req, res) {
     new BucketList({
+        user: 'user1',
         title: req.body.title,
         //activities: []
     }).save(function(err) {

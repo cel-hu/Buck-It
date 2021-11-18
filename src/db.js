@@ -13,7 +13,7 @@ const Activity = new mongoose.Schema({
 	checked: {type: Boolean, default: false, required: true}
 })
 const BucketList = new mongoose.Schema({
-	//user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
+	user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
 	title: {type: String, required: true},
 	//activities: [Activity],
     //createdAt: {type: Date, required: true}
