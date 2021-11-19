@@ -7,11 +7,12 @@ const User = new mongoose.Schema({
 	username: String,
 	password: String
 });
+
 User.plugin(passportLocalMongoose);
 
 const BucketList = new mongoose.Schema({
-	user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-	title: {type: String, required: true},
+	user: String,
+	title: String,
 	activities: [{
 		name: String,
 		price: Number,
