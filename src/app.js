@@ -1,14 +1,31 @@
 require('./db');
 const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const app = express();
+const path = require('path');
+
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const BucketList = mongoose.model('BucketList');
+//const Activity = mongoose.model('Activity');
+
 const passport = require('passport');
 const session = require('express-session');
-
 const MongoDBStore = require('connect-mongodb-session')(session);
+const LocalStrategy = require('passport-local').Strategy
 
-const path = require('path');
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(function(user, done) {
+    done(null, user.username);
+});
+
+passport.deserializeUser(function(username, done) {
+    User.findOne({username: username}, function (err, user) {
+        done(err, user);
+    });
+});
 
 const sessStore = new MongoDBStore({
     uri: process.env.MONGODB_URI || 'mongodb://localhost/ait_final',
@@ -16,8 +33,8 @@ const sessStore = new MongoDBStore({
 
 const sessionOptions = { 
 	secret: 'secret', 
+    resave: true,
 	saveUninitialized: true, 
-	resave: true,
     store: sessStore
 };
 app.use(session(sessionOptions));
@@ -27,9 +44,8 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const User = mongoose.model('User');
-const BucketList = mongoose.model('BucketList');
-const Activity = mongoose.model('Activity');
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', function(req, res) {
     res.render('index');
@@ -38,75 +54,102 @@ app.get('/', function(req, res) {
 
 app.get('/signup', function(req, res) {
     res.render('signup');
-    res.redirect('/list/create');
 });
 
-app.post('/signup',  passport.authenticate('local', { 
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true 
-}));
-/* passport.js
-var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        User.findOne({ username: username }, function(err, user) {
-            if (err) { 
-                return done(err); 
-            }
-            if (!user) {
-                return done(null, false, { message: 'Incorrect username.' });
-            }
-            if (!user.validPassword(password)) {
-                return done(null, false, { message: 'Incorrect password.' });
-            }
-            return done(null, user);
-        });
-    }
-));
-*/
-
+app.post('/signup', function(req, res) {
+    User.register(new User({username:req.body.username}), req.body.password, function(err, user){
+        if (err) {
+            res.render('error', {message:'Your registration information is not valid'});
+        } 
+        else {
+            passport.authenticate('local')(req, res, function() {
+                res.redirect('/');
+            });
+        }
+    });  
+});
 
 app.get('/signin', function(req, res) {
     res.render('signin');
-    res.redirect('/list/create');
 });
 
+app.post('/signin', passport.authenticate('local', {failureRedirect: '/' }), function(req, res) {
+    res.redirect('/list?user=' + req.body.username)
+});
+
+
 app.get('/list', function(req, res) {
-    BucketList.find(function(err, bucketlists) {
+    BucketList.find({}, function(err, title) {
+        const user = req.query.user
         if (err) {
-            console.log(err);
+            return;
         }
         else {
-            res.render('list', {bucketlists: bucketlists})
+            res.render('list', {user: user, titles: title.filter(title => title.user == user)});
         }
     });
 });
 
 app.get('/list/create', function(req, res) {
-    res.render('create');
+    res.render('create', {user: req.query.user});
 });
 
 app.post('/list/create', function(req, res) {
+    const title = req.body.title;
+    const user = req.query.user;
     new BucketList({
-        //user: 'user1',
-        title: req.body.title,
-        //activities: []
+        user: user,
+        title: title,
+        activities: []
     }).save(function(err) {
         if (err) {
             return;
         }
-    })
-    res.redirect('/list');
+    });
+    //console.log(title)
+    res.redirect('/list?user='+user);
 });
 
 app.get('/list/slug', function(req, res) {
-    res.render('slug');
+    BucketList.find({title: req.query.title, user: req.query.user}, function(err, title){
+        if(err){
+            console.log(err);
+        }
+        else{
+            temp = []
+            title[0].activity.forEach(activity => temp.push(activity));
+            res.render('activities', {activities: temp, title: req.query.title, user: req.query.user});
+        }
+    });
 });
 
-app.post('/list/slug', function(req, res) {
+app.get('/list/slug-tag', function(req, res) {
+    res.send('prints all activities with a specfic tag')
+});
+
+app.get('/list/slug/new', function(req, res) {
+    res.render('create_activity', {title: req.query.title, user:req.query.user});
+});
+
+app.post('/list/slug/new', function(req, res) {
+    const title = req.query.title;
+    const user = req.query.user;
+    BucketList.findOne({title: title, user: user}, (err, title) => {
+        if (!err && title) {
+            act = {
+                name : req.body.expense,
+                price: parseInt(req.body.price),
+                tags: req.body.tags
+            }
+            title.save(title.activities.push(act));
+            res.redirect("/list/slug?title=" + title + "&user=" + user);
+        }
+        else {
+            console.log('error');
+            res.redirect('/list?user='+ user);
+        }
+    });
+  /*
     const tag = String(req.body.tag).split(',');
     new Activity({
         name: req.body.name,
@@ -133,6 +176,7 @@ app.post('/list/slug', function(req, res) {
         }
     });
     res.render('slug');
+    */
 });
 
 app.listen(process.env.PORT || 5000);

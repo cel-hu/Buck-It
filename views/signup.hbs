@@ -1,7 +1,17 @@
 <h2>Create new account:</h2>
-<form method="POST" action="signup">
-    <div>Name: <input type="text" name="name" value=""></div>
-	<div>Username: <input type="text" name="username" value=""></div>
-	<div>Password: <input type="password" name="password" value=""></div>
-	<div><input type="submit" value="Sign Up"></div>
+<h3>{{message}}</h3>
+<form method="POST" action="/signup">
+    <div>
+		Name: <input type="text" name="name" value="">
+	</div>
+	<div>
+		<label for="name">Username: </label>
+		<input type="text" name="username" required>
+	</div>
+	<div>
+		<label for="password">Password: </label>
+        <input type="password" name="password" required>
+	<div>
+		<input type="submit" value="Sign Up">
+	</div>
 </form>

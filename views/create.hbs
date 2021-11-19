@@ -1,11 +1,12 @@
-<h1>Create a new bucket list</h1>
-<form method="POST" action="create">
+<h2>Create a new bucket list</h2>
+<form method="POST" action="/list/create?user={{user}}">
 	<div>Title: <input type="text" name="title" value=""></div>
 	<div><input type="submit" value="create"></div>
 </form>
 
-<center>
-    <a href= "/list">All Lists</a>
-    <a href= "/list/create">Create New List</a>
-</center>
+<div>
+    <center>
+        <a href= "/list">All Lists</a>
+    </center>
+</div>
 

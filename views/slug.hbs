@@ -1,3 +1,32 @@
+<h3>Activities</h3>
+<table class="center">
+  <tr>
+		<th>Activities</th>
+  </tr>
+
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Activity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Tag</th>
+    </tr>
+  </thead>
+  <tbody>
+        {{#each activity}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{price}}</td>
+      <td>{{tags}}</td>
+    </tr>
+      {{/each}}
+  </tbody>
+</table>
+
+</table>
+
+<div> <a href="/list/slug?user={{user}}&title={{title}}">Add an Activity</a> </div>
+
 <center>
     <a href= "/list">All Lists</a>
     <a href= "/list/create">Create New List</a>
