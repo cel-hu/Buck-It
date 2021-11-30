@@ -9,6 +9,8 @@ const User = mongoose.model('User');
 const BucketList = mongoose.model('BucketList');
 //const Activity = mongoose.model('Activity');
 
+const bootstrap = require('bootstrap');
+
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const passport = require('passport');
