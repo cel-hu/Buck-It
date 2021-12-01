@@ -44,22 +44,22 @@ An Example List with Embedded Items:
 ## Wireframes
 
 / - home page where users can log in
-![home](home.png)
+![home](img/home.png)
 
 /signup - page where new users can create an account
-![signup](signup.png)
+![signup](img/signup.png)
 
 /signin - page where existing users can sign in to their account
-![signin](signin.png)
+![signin](img/signin.png)
 
 /list - page for showing all of the user's bucket lists
-![list](list.png)
+![list](img/list.png)
 
 /list/create - page for creating a new bucket list
-![list create](list-create.png)
+![list create](img/list-create.png)
 
 /list/slug - page for showing specific bucket list
-![list slug](list-slug.png)
+![list slug](img/list-slug.png)
 
 ## Site map
 
