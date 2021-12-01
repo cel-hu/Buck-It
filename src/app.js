@@ -120,7 +120,7 @@ app.post('/list/slug/delete', function(req, res) {
             res.render('error', {message:'error'});
         }
     });
-    res.redirect("/list/slug?title=" + req.query.title + "&user=" + user);
+    res.redirect("/list/slug?user=" + user + "&title=" + req.query.title);
 });
 
 app.get('/list/slug', function(req, res) {
