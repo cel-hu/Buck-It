@@ -11,7 +11,7 @@ const BucketList = mongoose.model('BucketList');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy
+const LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(User.authenticate()));
 
@@ -54,7 +54,7 @@ app.get('/signup', function(req, res) {
 });
 
 app.post('/signup', function(req, res) {
-    User.register(new User({username:req.body.username}), req.body.password, function(err, user) {
+    User.register(new User({username:req.body.username}), req.body.password, function(err) {
         if (err) {
             res.render('error', {message:'Your registration information is not valid'});
         } 
@@ -71,7 +71,7 @@ app.get('/signin', function(req, res) {
 });
 
 app.post('/signin', passport.authenticate('local', {failureRedirect: '/' }), function(req, res) {
-    res.redirect('/list?user=' + req.body.username)
+    res.redirect('/list?user=' + req.body.username);
 });
 
 app.get('/list', function(req, res) {
@@ -80,7 +80,7 @@ app.get('/list', function(req, res) {
             res.render('error', {message:'error'});
         }
         else {
-            res.render('list', {user: req.query.user, bucketlists: title.filter(title => title.user == req.query.user)});
+            res.render('list', {user: req.query.user, bucketlists: title.filter(title => title.user === req.query.user)});
         }
     });
 });
@@ -111,7 +111,7 @@ app.get('/list/delete', function(req, res) {
             res.render('error', {message:'error'});
         }
         else {
-            res.render('delete', {user: req.query.user, bucketlists: title.filter(title => title.user == req.query.user)});
+            res.render('delete', {user: req.query.user, bucketlists: title.filter(title => title.user === req.query.user)});
         }
     });
 });
@@ -131,13 +131,13 @@ app.get('/list/slug', function(req, res) {
             res.render('error', {message:'error'});
         }
         else {
-            temp = []
+            const temp = [];
             title[0].activities.forEach(activities => temp.push(activities));
-            let prices = [];
+            const prices = [];
             for (let i = 0; i < title[0].activities.length; i++) {
                 prices.push(title[0].activities[i].price);
             }
-            let total = prices.reduce((prev, curr) => prev + curr, 0);
+            const total = prices.reduce((prev, curr) => prev + curr, 0);
             res.render('slug', {activities: temp, title: req.query.title, user: req.query.user, price: total});
         }
     });
@@ -152,11 +152,11 @@ app.post('/list/slug/add', function(req, res) {
     const user = req.query.user;
     BucketList.findOne({title: title, user: user}, (err, title) => {
         if (!err && title) {
-            activity = {
+            const activity = {
                 name : req.body.activity,
                 price: parseInt(req.body.price),
                 tags: req.body.tags
-            }
+            };
             title.save(title.activities.push(activity));
             res.redirect("/list/slug?title=" + req.query.title + "&user=" + user);
         }
