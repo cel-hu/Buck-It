@@ -1,8 +1,11 @@
+<h2 class="text-center">Bucket Lists</h2>
 <div class='table'>
     <table align='center'>
-        <tr>
-            <th>Bucket Lists</th>
-        </tr>
+        <!--<th>
+            <tr>
+                <th>Bucket Lists</th>
+            </tr>
+        </th>-->
         {{#each bucketlists}}
             <tr>
                 <td><a href="/list/slug?user={{user}}&title={{title}}">{{title}}</a></td>
@@ -10,6 +13,6 @@
         {{/each}}
     </table>
 </div>
-<center>
-    <a href= "/list/create?user={{user}}">Create New List</a>
-</center>
+<div class="text-center">
+    <a href= "/list/create?user={{user}}" class="btn btn-outline-primary">Create New List</a>
+</div>

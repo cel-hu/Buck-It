@@ -1,0 +1,12 @@
+<h2 class="text-center">New Activity</h2>
+<form method="POST" action="/list/slug/new?user={{user}}&title={{title}}">
+    <div class="text-center">
+        <input type="text" name="activity" value="" placeholder="Activity">
+        <input type="text" name="price"value="" placeholder="Price">
+        <input type="submit" value="Create">
+    </div>
+</form>
+<div class="m-2 text-center">
+    <a href= "/list?user={{user}}" class="btn btn-outline-secondary">All Lists</a>
+    <a href= "/list/create?user={{user}}" class="btn btn-outline-secondary">Create New List</a>
+</div>

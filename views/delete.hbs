@@ -1,0 +1,78 @@
+<h2 class="text-center">Delete a bucket list</h2>
+<form method="POST" action="/list/slug/delete?user={{user}}&title={{title}}">
+
+<h2 class="m-2 text-center">Activities</h2>
+    <div class="container-lg">
+        <table class="center">
+            <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Activity</th>
+                <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each activities}}
+                <tr>
+                <th scope="row">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check" unchecked>
+                        <label class="custom-control-label" for="check">{{name}}</label>
+                    </div>
+                </th>
+                    <td>{{price}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+            </table>
+        </table>
+        <a href="/list/slug/new?user={{user}}&title={{title}}" class="btn btn-sm btn-outline-primary">Delete an Activity</a>
+        <div class="m-2 text-center">
+            <a href= "/list?user={{user}}" class="btn btn-outline-secondary">All Lists</a>
+            <a href= "/list/create?user={{user}}" class="btn btn-outline-secondary">Create New List</a>
+        </div>
+    </div>
+<!--
+    {{#each bucketlists}}
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+                {{title}}
+            </label>
+    </div>
+    {{/each}}
+
+    <div class="container-lg">
+  <table class="center">
+    <table class="table table-bordered">
+      
+      <tbody>
+        {{#each activities}}
+        <tr>
+          <th scope="row">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="check" unchecked>
+              <label class="custom-control-label" for="check">{{name}}</label>
+            </div>
+          </th>
+            <td>{{price}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </table>
+  -->
+<!--
+	<div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-delete" data-bs-toggle="dropdown">
+            Choose a bucket list
+        </button>
+    
+        <div class="dropdown-menu" aria-labelledby="dropdown-delete">
+            {{#each bucketlists}}
+            <a class="dropdown-item" href="#">{{title}}</a>
+            {{/each}}
+        </div>
+    </div>
+    -->
+</form>

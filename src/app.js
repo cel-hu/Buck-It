@@ -82,7 +82,7 @@ app.post('/signin', passport.authenticate('local', {failureRedirect: '/' }), fun
 app.get('/list', function(req, res) {
     BucketList.find({}, function(err, title) {
         if (err) {
-            return;
+            res.render('error', {message:'error'});
         }
         else {
             res.render('list', {user: req.query.user, bucketlists: title.filter(title => title.user == req.query.user)});
@@ -104,16 +104,29 @@ app.post('/list/create', function(req, res) {
     });
     newList.save(function(err) {
         if (err) {
-            return;
+            res.render('error', {message:'error'});
         }
     });
     res.redirect('/list?user='+user);
 });
 
+app.get('/list/slug/delete', function(req, res) {
+    res.render('delete', {user: req.query.user});
+});
+
+app.post('/list/slug/delete', function(req, res) {
+    BucketList.find({_id: req.body.id}, function(err) {
+        if (err) {
+            res.render('error', {message:'error'});
+        }
+    });
+    res.redirect("/list/slug?title=" + req.query.title + "&user=" + user);
+});
+
 app.get('/list/slug', function(req, res) {
     BucketList.find({title: req.query.title, user: req.query.user}, function(err, title) {
         if(err){
-            console.log(err);
+            res.render('error', {message:'error'});
         }
         else{
             temp = []
@@ -124,12 +137,8 @@ app.get('/list/slug', function(req, res) {
     });
 });
 
-app.get('/list/slug-tag', function(req, res) {
-    res.send('prints all activities with a specfic tag')
-});
-
 app.get('/list/slug/new', function(req, res) {
-    res.render('create_activity', {title: req.query.title, user:req.query.user});
+    res.render('add', {title: req.query.title, user:req.query.user});
 });
 
 app.post('/list/slug/new', function(req, res) {
@@ -146,7 +155,7 @@ app.post('/list/slug/new', function(req, res) {
             res.redirect("/list/slug?title=" + req.query.title + "&user=" + user);
         }
         else {
-            console.log('error');
+            res.render('error', {message:'error'});
             res.redirect('/list?user='+ user);
         }
     });
