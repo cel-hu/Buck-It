@@ -78,7 +78,6 @@ app.post('/signin', passport.authenticate('local', {failureRedirect: '/' }), fun
     res.redirect('/list?user=' + req.body.username)
 });
 
-
 app.get('/list', function(req, res) {
     BucketList.find({}, function(err, title) {
         if (err) {
@@ -110,17 +109,24 @@ app.post('/list/create', function(req, res) {
     res.redirect('/list?user='+user);
 });
 
-app.get('/list/slug/delete', function(req, res) {
-    res.render('delete', {user: req.query.user});
+app.get('/list/delete', function(req, res) {
+    BucketList.find({}, function(err, title) {
+        if (err) {
+            res.render('error', {message:'error'});
+        }
+        else {
+            res.render('delete', {user: req.query.user, bucketlists: title.filter(title => title.user == req.query.user)});
+        }
+    });
 });
 
-app.post('/list/slug/delete', function(req, res) {
-    BucketList.find({_id: req.body.id}, function(err) {
+app.post('/list/delete', function(req, res) {
+    BucketList.deleteOne({title: req.body.title, user: req.query.user}, function(err) {
         if (err) {
             res.render('error', {message:'error'});
         }
     });
-    res.redirect("/list/slug?user=" + user + "&title=" + req.query.title);
+    res.redirect('/list?user='+req.query.user);
 });
 
 app.get('/list/slug', function(req, res) {
