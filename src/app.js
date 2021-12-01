@@ -7,9 +7,6 @@ const path = require('path');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const BucketList = mongoose.model('BucketList');
-//const Activity = mongoose.model('Activity');
-
-//const bootstrap = require('bootstrap');
 
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -50,7 +47,6 @@ app.use(passport.session());
 
 app.get('/', function(req, res) {
     res.render('index');
-    //res.send('Home Page');
 });
 
 app.get('/signup', function(req, res) {
@@ -169,34 +165,6 @@ app.post('/list/slug/new', function(req, res) {
             res.redirect('/list?user='+ user);
         }
     });
-  /*
-    const tag = String(req.body.tag).split(',');
-    new Activity({
-        name: req.body.name,
-        price: req.body.price, 
-        tag: [...tag], 
-        checked: req.body.checked
-    }).save(function() {
-        if (req.session.activities !== undefined) {
-            req.session.activities.push({
-                name: req.body.name,
-                price: req.body.price,
-                tag: [...tag],
-                checked: req.body.checked
-            });
-        }
-        else {
-            req.session.activities = [];
-            req.session.activities.push({
-                name: req.body.name,
-                price: req.body.price,
-                tag: [...tag],
-                checked: req.body.checked
-            });
-        }
-    });
-    res.render('slug');
-    */
 });
 
 app.listen(process.env.PORT || 5000);
