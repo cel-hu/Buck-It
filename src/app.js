@@ -143,11 +143,11 @@ app.get('/list/slug', function(req, res) {
     });
 });
 
-app.get('/list/slug/new', function(req, res) {
+app.get('/list/slug/add', function(req, res) {
     res.render('add', {title: req.query.title, user:req.query.user});
 });
 
-app.post('/list/slug/new', function(req, res) {
+app.post('/list/slug/add', function(req, res) {
     const title = req.query.title;
     const user = req.query.user;
     BucketList.findOne({title: title, user: user}, (err, title) => {

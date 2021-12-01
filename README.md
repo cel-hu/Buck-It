@@ -31,10 +31,9 @@ An Example List with Embedded Items:
   user: // a reference to a User object
   name: "Things to do before graduating high school",
   activities: [
-    { name: "go to a football game", price: "4.50", tags: ["experience"], checked: false},
-    { name: "watch a sunrise with friends", price: "0.00", tags: ["experience"], checked: true},
+    { name: "go to a football game", price: "4.50", checked: false},
+    { name: "watch a sunrise with friends", price: "0.00", checked: true},
   ],
-  createdAt: // timestamp
 }
 ```
 
@@ -61,9 +60,14 @@ An Example List with Embedded Items:
 /list/slug - page for showing specific bucket list
 ![list slug](img/list-slug.png)
 
+### Changes made to wireframes:
+/list/delete - page for deleting a new bucket list
+
+/list/slug/add - page for adding a new activity to a specific bucket list
+
 ## Site map
 
-![sitemap](sitemap.png)
+![sitemap](img/sitemap.png)
 
 ## User Stories or Use Cases
 
@@ -71,8 +75,9 @@ An Example List with Embedded Items:
 2. as a user, I can log in to the site
 3. as a user, I can create a new bucket list
 4. as a user, I can view all of the bucket lists I've created
-5. as a user, I can add activities to an existing bucket list
-6. as a user, I can cross off activities in an existing bucket list
+5. as a user, I can delete bucket lists
+6. as a user, I can add activities to an existing bucket list
+7. as a user, I can check off activities in an existing bucket list
 
 ## Research Topics
 
@@ -82,7 +87,7 @@ An Example List with Embedded Items:
         * The local strategy has a failureFlash option that when set to true will prompt the user to try again
     * LocalStrategy has a usernameField and a passwordField for login
 * (2 points) Use a CSS framework throughout your site
-    * I'm going to be using Bootstrap 
+    * I'm going to be using Bootstrap to format and make the website pretty
 
 8 points total out of 8 required points
 
