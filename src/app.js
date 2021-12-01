@@ -131,14 +131,18 @@ app.post('/list/delete', function(req, res) {
 
 app.get('/list/slug', function(req, res) {
     BucketList.find({title: req.query.title, user: req.query.user}, function(err, title) {
-        if(err){
+        if (err) {
             res.render('error', {message:'error'});
         }
-        else{
+        else {
             temp = []
-            console.log(title)
             title[0].activities.forEach(activities => temp.push(activities));
-            res.render('slug', {activities: temp, title: req.query.title, user: req.query.user});
+            let prices = [];
+            for (let i = 0; i < title[0].activities.length; i++) {
+                prices.push(title[0].activities[i].price);
+            }
+            let total = prices.reduce((prev, curr) => prev + curr, 0);
+            res.render('slug', {activities: temp, title: req.query.title, user: req.query.user, price: total});
         }
     });
 });
