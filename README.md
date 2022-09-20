@@ -1,4 +1,4 @@
-# BUCKIT
+# Buck-It
 
 ## Overview
 
